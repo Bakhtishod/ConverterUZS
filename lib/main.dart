@@ -11,7 +11,9 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 import 'package:toast/toast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'cards/currency_card.dart';
 
@@ -489,6 +491,82 @@ class _MainScreenState extends State<MainScreen> {
                         width: bannerAd!.size.width.toDouble(),
                         child: AdWidget(ad: bannerAd!,),
                       ):SizedBox(),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(6, 2, 2, 4),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40)),
+                              height: 50,
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    side: BorderSide(color: Colors.white)),
+                                color: Colors.blue,
+                                onPressed: () {
+                                  Share.share("Converter UZS\nPlay Store: https://play.google.com/store/apps/details?id=dev.bakhtishod.converter");
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.share,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Share".toUpperCase(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontFamily: "Roboto"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(2, 2, 6, 4),
+                              height: 50,
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    side: BorderSide(color: Colors.white)),
+                                color: Colors.blue,
+                                onPressed: () async {
+                                  await launch("https://play.google.com/store/apps/details?id=dev.bakhtishod.converter");
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.star_rate,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Rate".toUpperCase(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontFamily: "Roboto"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )),
+                      ],
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
